@@ -163,11 +163,8 @@ show grants for 'sys_temp'@'localhost';
 ```
 3.2. Выполните запрос на получение списка прав для пользователя sys_temp. (скриншот)
 ```sql
-mysql -u root -p 
 show grants for 'sys_temp'@'localhost';
-exit
 ```
-
 ![изображение](https://github.com/Gr1ck01/homework-12-netology/assets/56309750/3494adb7-df50-49c9-82e0-ed44ba370865)
 
 
