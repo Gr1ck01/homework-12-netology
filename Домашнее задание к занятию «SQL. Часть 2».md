@@ -56,13 +56,16 @@ where length > (select AVG(length) from film);
 
 ### Ответ 3
 ```
-select month(payment_date) as месяц, SUM(p.amount) "сумма платежей", COUNT(p.rental_id) "кол-во аренд" 
-from payment p
-group by MONTH(payment_date)
-order by SUM(p.amount ) 
-desc limit 1;
+SELECT DATE_FORMAT(payment_date, '%Y-%m') 
+AS payment_month, COUNT(rental_id) 
+AS rental_count, SUM(amount) 
+AS total_amount 
+FROM payment 
+GROUP BY payment_month 
+ORDER BY total_amount 
+DESC LIMIT 1;
 ```
-![image](https://github.com/Gr1ck01/homework-12-netology/assets/56309750/040a5936-75b1-4fa1-9306-dda49c2912ec)
+![image](https://github.com/Gr1ck01/homework-12-netology/assets/56309750/ec7b4dda-bc47-4faf-9d2a-ba07e398f798)
 
 
 ## Дополнительные задания (со звёздочкой*)
