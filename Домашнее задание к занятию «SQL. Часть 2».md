@@ -1,4 +1,4 @@
-# Домашнее задание к занятию «SQL. Часть 2»
+# Домашнее задание к занятию «SQL. Часть 2» Мальков Григорий
 
 ### Инструкция по выполнению домашнего задания
 
@@ -26,13 +26,43 @@
 - город нахождения магазина;
 - количество пользователей, закреплённых в этом магазине.
 
+### Ответ 1
+```
+select concat(sotr.first_name , ' ', sotr.last_name) as сотрудник,  c2.city as город, COUNT(c.customer_id) as "покупатели"
+from staff sotr
+join store s2 on s2.store_id = sotr.store_id 
+join customer c on c.store_id = s2.store_id
+join address a on a.address_id = s2.address_id 
+join city c2 on c2.city_id = a.city_id 
+group by sotr.staff_id, c2.city_id 
+having COUNT(c.customer_id) > 300;
+```
+![image](https://github.com/Gr1ck01/homework-12-netology/assets/56309750/168d82ba-089d-4807-996d-3afbc6fbd6ac)
+
 ### Задание 2
 
 Получите количество фильмов, продолжительность которых больше средней продолжительности всех фильмов.
 
+### Ответ 2
+```
+select count(film_id) as "кол-во фильмов" from film 
+where length > (select AVG(length) from film);
+```
+![image](https://github.com/Gr1ck01/homework-12-netology/assets/56309750/c78ba0bb-b3b2-4226-aa83-7d09e7c2f9f7)
+
 ### Задание 3
 
 Получите информацию, за какой месяц была получена наибольшая сумма платежей, и добавьте информацию по количеству аренд за этот месяц.
+
+### Ответ 3
+```
+select month(payment_date) as месяц, SUM(p.amount) "сумма платежей", COUNT(p.rental_id) "кол-во аренд" 
+from payment p
+group by MONTH(payment_date)
+order by SUM(p.amount ) 
+desc limit 1;
+```
+![image](https://github.com/Gr1ck01/homework-12-netology/assets/56309750/040a5936-75b1-4fa1-9306-dda49c2912ec)
 
 
 ## Дополнительные задания (со звёздочкой*)
