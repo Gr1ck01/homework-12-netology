@@ -24,13 +24,35 @@
 
 Получите уникальные названия районов из таблицы с адресами, которые начинаются на “K” и заканчиваются на “a” и не содержат пробелов.
 
+### Ответ 1
+```
+SELECT DISTINCT district FROM address WHERE district LIKE 'K%a' AND district NOT LIKE '% %';
+```
+![image](https://github.com/Gr1ck01/homework-12-netology/assets/56309750/109c5c0b-8062-4e58-b64d-636a205710f6)
+
+
 ### Задание 2
 
 Получите из таблицы платежей за прокат фильмов информацию по платежам, которые выполнялись в промежуток с 15 июня 2005 года по 18 июня 2005 года **включительно** и стоимость которых превышает 10.00.
 
+### Ответ 2
+```
+SELECT * FROM payment WHERE payment_date BETWEEN '2005-06-15 00:00:00' AND '2005-06-18 23:59:59' AND amount > 10;
+```
+![image](https://github.com/Gr1ck01/homework-12-netology/assets/56309750/0c62c954-0f40-4e91-80c4-924c1e7859b8)
+
+
 ### Задание 3
 
 Получите последние пять аренд фильмов.
+
+### Ответ 3
+```
+SELECT * FROM rental ORDER BY rental_id DESC
+LIMIT 5;
+```
+![image](https://github.com/Gr1ck01/homework-12-netology/assets/56309750/f44d7a8f-31db-4177-836a-e9bfbc196636)
+
 
 ### Задание 4
 
@@ -39,6 +61,14 @@
 Сформируйте вывод в результат таким образом:
 - все буквы в фамилии и имени из верхнего регистра переведите в нижний регистр,
 - замените буквы 'll' в именах на 'pp'.
+
+### Ответ 4
+```
+SELECT LOWER(REPLACE(first_name, 'LL', 'PP')) AS Имя, LOWER(last_name) AS Фамилия FROM customer
+WHERE active = 1 AND (first_name LIKE 'Kelly' OR first_name LIKE 'Willie');
+```
+
+![image](https://github.com/Gr1ck01/homework-12-netology/assets/56309750/6b2d5340-94dc-4d0d-b2e7-c15bf72e6c18)
 
 ## Дополнительные задания (со звёздочкой*)
 Эти задания дополнительные, то есть не обязательные к выполнению, и никак не повлияют на получение вами зачёта по этому домашнему заданию. Вы можете их выполнить, если хотите глубже шире разобраться в материале.
